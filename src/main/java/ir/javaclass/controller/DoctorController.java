@@ -34,6 +34,12 @@ public class DoctorController {
         return doctorService.getAll();
     }
 
+    @GetMapping("/doctor/list/{professionId}")
+    @ResponseBody
+    public List<DoctorDto> getAll(@PathVariable Integer professionId){
+        return doctorService.getAllByProfession(professionId);
+    }
+
 
 }
 

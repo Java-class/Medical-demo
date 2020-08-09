@@ -3,10 +3,13 @@ package ir.javaclass.service;
 import ir.javaclass.dao.DoctorRepository;
 import ir.javaclass.dao.PatientRepository;
 import ir.javaclass.dao.WorkScheduleRepository;
+import ir.javaclass.dto.DoctorScheduleDto;
+import ir.javaclass.dto.PatientDto;
 import ir.javaclass.dto.ScheduleDto;
 import ir.javaclass.entity.Doctor;
 import ir.javaclass.entity.Patient;
 import ir.javaclass.entity.WorkSchedule;
+import org.hibernate.jdbc.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,13 +47,20 @@ public class WorkScheduleService {
         return list;
     }
 
-    public List<WorkSchedule> getAll(int doctorId) {
+    public List<DoctorScheduleDto> getAll(int doctorId) {
+        List<DoctorScheduleDto> result = null;
         Optional<Doctor> optionalDoctor = doctorRepository.findById(doctorId);
         if(optionalDoctor.isPresent()) {
             Doctor doctor = optionalDoctor.get();
-            return workScheduleRepository.getAllByDoctor(doctor);
+            List<WorkSchedule> list = workScheduleRepository.getAllByDoctor(doctor);
+            if(list!=null && list.size()>0) {
+                result = new ArrayList<>();
+                for (WorkSchedule workSchedule : list) {
+                    result.add(new DoctorScheduleDto(workSchedule.getDate(), workSchedule.getPatient()!=null?new PatientDto(workSchedule.getPatient().getName(), workSchedule.getPatient().getAge(), workSchedule.getPatient().getSex()):null, workSchedule.getDescription()));
+                }
+            }
         }
-        return null;
+        return result;
     }
 
     public synchronized WorkSchedule bookingSchedule(int scheduleId, int patientId, String description) {

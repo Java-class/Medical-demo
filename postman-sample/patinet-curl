@@ -1,0 +1,7 @@
+curl --location --request PUT 'http://localhost:8085/patient/add' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "Ahmad",
+    "age": 28,
+    "sex": "MALE"
+}'

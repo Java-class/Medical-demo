@@ -1,5 +1,6 @@
 package ir.javaclass.controller;
 
+import ir.javaclass.dto.DoctorScheduleDto;
 import ir.javaclass.dto.ScheduleDto;
 import ir.javaclass.entity.WorkSchedule;
 import ir.javaclass.service.WorkScheduleService;
@@ -25,12 +26,11 @@ public class WorkScheduleController {
     }
 
     @GetMapping("/schedule/list/{doctorId}")
-    public List<WorkSchedule> list(@PathVariable Integer doctorId){
+    public List<DoctorScheduleDto> list(@PathVariable Integer doctorId){
         return service.getAll(doctorId);
     }
 
     @PostMapping(value = "/schedule/booking/{scheduleId}")
-    //public WorkSchedule bookSchedule( @PathVariable Integer scheduleId, @RequestHeader(name = "patientId") Integer patientId){
     public WorkSchedule bookSchedule( @PathVariable Integer scheduleId, @RequestParam Integer patientId, @RequestParam String description){
         return service.bookingSchedule(scheduleId, patientId,description);
     }

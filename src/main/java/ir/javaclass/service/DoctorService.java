@@ -50,8 +50,17 @@ public class DoctorService {
         return doctors;
     }
 
-    public List<Doctor> getAll(Profession profession){
-       return doctorRepository.getAllByProfession(profession);
+    public List<DoctorDto> getAllByProfession(int professionId){
+        List<DoctorDto> doctors = new ArrayList<>();
+        Optional<Profession> professionOptional = professionRepository.findById(professionId);
+        if(professionOptional.isPresent()) {
+            Profession profession = professionOptional.get();
+            List<Doctor> list = doctorRepository.getAllByProfession(profession);
+            for (Doctor doctor : list)
+                doctors.add(new DoctorDto(doctor.getName(),doctor.getProfession().getId(), doctor.getAddDate()));
+            return doctors;
+        }
+        return null;
     }
 
 }

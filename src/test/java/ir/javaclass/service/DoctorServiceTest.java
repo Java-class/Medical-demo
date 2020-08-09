@@ -15,8 +15,21 @@ class DoctorServiceTest {
 
     @Test
     void register() {
-        DoctorDto doctorDto = new DoctorDto("doc1",1);
+        DoctorDto doctorDto = new DoctorDto("اکرم اسماعیلی",3);
         doctorService.register(doctorDto);
+
+        doctorDto = new DoctorDto("بهمن پور اقدم",4);
+        doctorService.register(doctorDto);
+
+        doctorDto = new DoctorDto("ریحانه شعبانی",5);
+        doctorService.register(doctorDto);
+
+        doctorDto = new DoctorDto("علی جلالی نژاد",6);
+        doctorService.register(doctorDto);
+
+        doctorDto = new DoctorDto("کیان دارابی",7);
+        doctorService.register(doctorDto);
+
     }
 
     @Test
@@ -26,7 +39,9 @@ class DoctorServiceTest {
     @Test
     void getAll() {
         List<DoctorDto> doctorDtos = doctorService.getAll();
-        System.out.println("size of list: " + doctorDtos.size());
+        for(DoctorDto dto : doctorDtos){
+            System.out.println(dto.toString());
+        }
     }
 
     @Test

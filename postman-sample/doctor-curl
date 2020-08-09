@@ -1,0 +1,67 @@
+###### register doctor
+request:  curl --location --request PUT 'https://localhost:8085/doctor/add' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name":"doctor name",
+    "prof_id":1
+}'
+
+
+##### show list of doctor
+request: curl --location --request GET 'http://localhost:8085/doctor/list'
+ response : application/json
+ [
+     {
+         "name": "doc1",
+         "prof_id": 1,
+         "reg_date": "2020-08-08T09:01:36.000+00:00"
+     },
+     {
+         "name": "doc1",
+         "prof_id": 1,
+         "reg_date": "2020-08-08T09:15:57.000+00:00"
+     },
+     {
+         "name": "اکرم اسماعیلی",
+         "prof_id": 3,
+         "reg_date": "2020-08-09T06:19:05.000+00:00"
+     },
+     {
+         "name": "بهمن پور اقدم",
+         "prof_id": 4,
+         "reg_date": "2020-08-09T06:19:05.000+00:00"
+     },
+     {
+         "name": "ریحانه شعبانی",
+         "prof_id": 5,
+         "reg_date": "2020-08-09T06:19:05.000+00:00"
+     },
+     {
+         "name": "علی جلالی نژاد",
+         "prof_id": 6,
+         "reg_date": "2020-08-09T06:19:05.000+00:00"
+     },
+     {
+         "name": "کیان دارابی",
+         "prof_id": 7,
+         "reg_date": "2020-08-09T06:19:05.000+00:00"
+     }
+ ]
+
+
+ #### show list of doctor with specific profession
+ request: curl --location --request GET 'http://localhost:8085/doctor/list/3'
+ response: application/json
+ [
+     {
+         "name": "اکرم اسماعیلی",
+         "prof_id": 3,
+         "reg_date": "2020-08-09T06:19:05.000+00:00"
+     }
+ ]
+
+
+
+
+
+

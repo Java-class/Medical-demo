@@ -49,4 +49,13 @@ public class DoctorDto {
         this.prof_id = prof_id;
         this.reg_date = reg_date;
     }
+
+    @Override
+    public String toString() {
+        return "DoctorDto{" +
+                "name='" + name + '\'' +
+                ", prof_id=" + prof_id +
+                ", reg_date=" + reg_date +
+                '}';
+    }
 }

@@ -39,4 +39,13 @@ public class PatientDto {
     public void setSex(Patient.SEX sex) {
         this.sex = sex;
     }
+
+    @Override
+    public String toString() {
+        return "PatientDto{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", sex=" + sex +
+                '}';
+    }
 }

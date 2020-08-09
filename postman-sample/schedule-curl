@@ -1,0 +1,57 @@
+##### create schedule for a doctor
+curl --location --request PUT 'http://localhost:8085/schedule/create' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "doctor_id": 1,
+    "duration": 30,
+    "from": "2020-08-08T09:00:00.000+00:00",
+    "to": "2020-08-08T12:00:00.000+00:00"
+}'
+
+
+##### booking schedule number 14 for  patient with number 1
+curl --location --request POST 'http://localhost:8085/schedule/booking/14' \
+--header 'patientId: 1' \
+--form 'patientId=2' \
+--form 'description=some description for booking'
+
+
+#####  list of doctor schedule with doctor id=3
+request: curl --location --request GET 'http://localhost:8085/schedule/list/4'
+ response: application/json
+         [
+             {
+                 "date": "2020-08-09T06:26:59.000+00:00",
+                 "patient": null,
+                 "description": null
+             },
+             {
+                 "date": "2020-08-09T06:46:59.000+00:00",
+                 "patient": null,
+                 "description": null
+             },
+             {
+                 "date": "2020-08-09T07:06:59.000+00:00",
+                 "patient": null,
+                 "description": null
+             },
+             {
+                 "date": "2020-08-09T07:26:59.000+00:00",
+                 "patient": null,
+                 "description": null
+             },
+             {
+                 "date": "2020-08-09T07:46:59.000+00:00",
+                 "patient": null,
+                 "description": null
+             },
+             {
+                 "date": "2020-08-09T08:06:59.000+00:00",
+                 "patient": {
+                     "name": "علیرضا حسینی",
+                     "age": 23,
+                     "sex": "MALE"
+                 },
+                 "description": "دارای تب خفیف و سردرد و..."
+             }
+         ]
